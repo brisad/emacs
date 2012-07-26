@@ -1,0 +1,33 @@
+;;; functions.el --- Misc functions
+
+;; Copyright (C) 2012  Michael Brennan
+
+;; Author: Michael Brennan <brennan.brisad@gmail.com>
+;; Keywords: lisp
+;;; Commentary:
+
+;; 
+
+;;; Code:
+
+(defun set-window-width (width)
+  "Set width of selected window to WIDTH."
+  (interactive "p")
+  (enlarge-window (- width (window-width)) t))
+
+(defun set-80-columns ()
+  "Set width of selected windows to 80 columns."
+  (interactive)
+  (set-window-width 80))
+
+(defun upcase-last-word ()
+  "Convert last word to upper case."
+  (interactive)
+  (upcase-word -1))
+
+(defun my-insert-command-value (command)
+  "Insert the return value of the command."
+  (interactive "*C(insert) M-x ")
+  (print (call-interactively command) (current-buffer)))
+
+;;; functions.el ends here
