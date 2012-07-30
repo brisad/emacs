@@ -16,6 +16,7 @@
 
 ;; Settings ;;
 
+(prefer-coding-system 'utf-8)
 (setq search-highlight t)
 (setq query-replace-highlight t)
 (global-hl-line-mode 1)
