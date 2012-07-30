@@ -32,6 +32,10 @@
 (setq require-final-newline t)
 (add-hook 'find-file-hook 'auto-insert)
 
+; Map M-x to a more accessible key sequence
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
+
 (global-set-key [f5] 'compile)
 (global-set-key [f11] 'eshell)
 (global-set-key "\C-co" 'occur)
