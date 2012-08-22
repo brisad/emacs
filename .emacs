@@ -62,7 +62,7 @@
 
 ;; iswitchb ;;
 (require 'iswitchb)
-(iswitchb-default-keybindings)
+(iswitchb-mode 1)
 
 ;; column-marker ;;
 (require 'column-marker)
