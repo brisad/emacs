@@ -26,14 +26,20 @@
 (setq org-todo-keywords '("TODO" "STARTED" "WAITING" "DONE"))
 
 (setq org-agenda-files '("~/org"))
-(if (eq system-type 'windows-nt)
-    (setq org-agenda-files (cons "E:/" org-agenda-files)))
+
+;; Usb stick is used to store org files that are used between
+;; different computers, windows at work and linux at home.
+(let ((usb-stick
+       (cond ((eq system-type 'gnu/linux) "/media/E/")
+             ((eq system-type 'windows-nt) "E:/"))))
+  (setq org-agenda-files (cons usb-stick org-agenda-files))
+  (setq org-default-notes-file (concat usb-stick "notes.org")))
 
 (setq org-agenda-start-on-weekday nil)
 
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 3))))
 
-(setq org-default-notes-file "E:/notes.org")
+;; This assumes Org version greater than 6.36
 (define-key global-map "\C-cc" 'org-capture)
 
 ;;; org-conf.el ends here
