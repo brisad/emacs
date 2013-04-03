@@ -23,6 +23,7 @@
 (line-number-mode 1)
 (column-number-mode 1)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 (setq transient-mark-mode nil)
 (setq visible-bell t)
@@ -39,6 +40,8 @@
 (global-set-key [f5] 'compile)
 (global-set-key [f11] 'eshell)
 (global-set-key "\C-co" 'occur)
+
+(global-set-key (kbd "<f12>") 'menu-bar-mode)
 
 (global-set-key "\C-c-" 'set-80-columns)
 (global-set-key "\C-cu" 'upcase-last-word)
