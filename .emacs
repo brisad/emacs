@@ -47,6 +47,10 @@
 (global-set-key "\C-cu" 'upcase-last-word)
 
 
+;; calendar ;;
+(setq calendar-week-start-day 1)
+
+
 ;; imenu ;;
 
 ;; Start imenu if possible
