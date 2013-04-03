@@ -33,18 +33,28 @@
 (setq require-final-newline t)
 (add-hook 'find-file-hook 'auto-insert)
 
+
+;; Keybindings
+
 ; Map M-x to a more accessible key sequence
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
 (global-set-key [f5] 'compile)
 (global-set-key [f11] 'eshell)
-(global-set-key "\C-co" 'occur)
 
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
+(global-set-key (kbd "C-c o") 'join-line)
 
 (global-set-key "\C-c-" 'set-80-columns)
 (global-set-key "\C-cu" 'upcase-last-word)
+
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-c p") 'proced)
+
+(global-set-key (kbd "C-c i d") 'insert-date)
+(global-set-key (kbd "C-c i t") 'insert-time)
 
 
 ;; calendar ;;

@@ -1,4 +1,4 @@
-;;; functions.el --- Misc functions
+;;; functions.el --- Utility functions
 
 ;; Copyright (C) 2012  Michael Brennan
 
@@ -29,5 +29,15 @@
   "Insert the return value of the command."
   (interactive "*C(insert) M-x ")
   (print (call-interactively command) (current-buffer)))
+
+(defun insert-date ()
+  "Insert the locale's \"preferred\" date format."
+  (interactive)
+  (insert (format-time-string "%x")))
+
+(defun insert-time ()
+  "Insert the locale's \"preferred\" time format."
+  (interactive)
+  (insert (format-time-string "%X")))
 
 ;;; functions.el ends here
