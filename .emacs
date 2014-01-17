@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/emacs")
 ; or (setq load-path (cons "~/.emacs/" load-path))
 ; or (push "~/.emacs/" load-path)
+(add-to-list 'load-path "~/emacs/yaml-mode")
 
 (load "functions")
 (load "japanese-conf")
@@ -84,6 +85,10 @@
 ;; column-marker ;;
 (require 'column-marker)
 (add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
+
+;; yaml-mode ;;
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 
 ;; Colors ;;
