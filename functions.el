@@ -10,6 +10,12 @@
 
 ;;; Code:
 
+(defun try-require (feature)
+  "Try to load FEATURE.  On error just return nil."
+  (condition-case err
+      (require feature)
+    (file-error nil)))
+
 (defun set-window-width (width)
   "Set width of selected window to WIDTH."
   (interactive "p")
@@ -26,7 +32,7 @@
   (upcase-word -1))
 
 (defun my-insert-command-value (command)
-  "Insert the return value of the command."
+  "Insert the return value of the COMMAND."
   (interactive "*C(insert) M-x ")
   (print (call-interactively command) (current-buffer)))
 

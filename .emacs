@@ -3,6 +3,33 @@
 ; Michael Brennan <brennan.brisad@gmail.com>
 ;
 
+(when (>= emacs-major-version 24)
+  (require 'cl)
+  (require 'package)
+  (package-initialize)
+
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.milkbox.net/packages/"))
+  (add-to-list 'package-archives
+               '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+  (defun install-if-needed (package)
+    (unless (package-installed-p package)
+      (package-install package)))
+
+  ;; make more packages available with the package installer
+  (setq to-install
+        '(python-mode magit yasnippet jedi auto-complete autopair
+                      find-file-in-repository flycheck))
+
+  (if (cl-notevery 'package-installed-p to-install)
+      (if (y-or-n-p "Some packages are missing. Download them?")
+          (progn
+            ;; Now that we've got a yes we can do network activity and
+            ;; refresh contents before performing the downloads.
+            (package-refresh-contents)
+            (mapc 'install-if-needed to-install)))))
+
 (add-to-list 'load-path "~/emacs")
 ; or (setq load-path (cons "~/.emacs/" load-path))
 ; or (push "~/.emacs/" load-path)
@@ -42,6 +69,7 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
 (global-set-key [f5] 'compile)
+(global-set-key [f7] 'find-file-in-repository)
 (global-set-key [f11] 'eshell)
 
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
@@ -57,10 +85,19 @@
 (global-set-key (kbd "C-c i d") 'insert-date)
 (global-set-key (kbd "C-c i t") 'insert-time)
 
+;; Magit ;;
+(if (try-require 'magit)
+    (global-set-key "\C-xg" 'magit-status))
 
 ;; calendar ;;
 (setq calendar-week-start-day 1)
 
+
+;; Python mode ;;
+(when (try-require 'python-mode)
+  (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+  (setq py-electric-colon-active t))
+;;I want Ctrl-BKSP to work and else: jumps to left
 
 ;; imenu ;;
 
@@ -78,9 +115,40 @@
 (windmove-default-keybindings)
 
 
+;; autocomplete ;;
+(when (try-require 'auto-complete)
+  (setq
+   ac-use-menu-map t
+   ac-candidate-limit 20)
+  (add-hook 'python-mode-hook 'auto-complete-mode)
+  (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode))
+
+(if (try-require 'autopair)
+    (add-hook 'python-mode-hook 'autopair-mode))
+
+(when (try-require 'yasnippet)
+  ;(yas-global-mode 1)
+  (yas-reload-all)
+  (add-hook 'python-mode-hook 'yas-minor-mode))
+
+;; Jedi ;;
+(if (try-require 'jedi)
+    (add-hook 'python-mode-hook
+              (lambda ()
+                (jedi:setup)
+                (local-set-key "\C-cd" 'jedi:show-doc)
+                (local-set-key (kbd "M-.") 'jedi:goto-definition))))
+
+;; flycheck ;;
+(if (try-require 'flycheck)
+    (global-flycheck-mode t))
+
 ;; iswitchb ;;
 (require 'iswitchb)
 (iswitchb-mode 1)
+
+;; ido-mode ;;
+(ido-mode t)
 
 ;; column-marker ;;
 (require 'column-marker)
