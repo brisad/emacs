@@ -70,6 +70,7 @@
 
 (global-set-key [f5] 'compile)
 (global-set-key [f7] 'find-file-in-repository)
+(global-set-key [f9] 'eshell-here)
 (global-set-key [f11] 'eshell)
 
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
