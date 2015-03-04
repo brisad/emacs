@@ -144,11 +144,11 @@
 (if (try-require 'flycheck)
     (global-flycheck-mode t))
 
-;; iswitchb ;;
-(require 'iswitchb)
-(iswitchb-mode 1)
-
 ;; ido-mode ;;
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(setq ido-use-filename-at-point 'guess)
+(setq ido-create-new-buffer 'always)
 (ido-mode t)
 
 ;; column-marker ;;
