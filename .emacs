@@ -20,7 +20,8 @@
   ;; make more packages available with the package installer
   (setq to-install
         '(python-mode magit yasnippet jedi auto-complete autopair
-                      find-file-in-repository flycheck))
+                      find-file-in-repository flycheck
+                      smartparens))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -41,6 +42,7 @@
 
 (load-library "iso-transl")
 
+(package-initialize)
 
 ;; Settings ;;
 
@@ -55,7 +57,6 @@
 (tool-bar-mode -1)
 (setq transient-mark-mode nil)
 (setq visible-bell t)
-(show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 (setq require-final-newline t)
@@ -93,6 +94,14 @@
 ;; calendar ;;
 (setq calendar-week-start-day 1)
 
+
+;; Smartparens mode ;;
+
+(when (try-require 'smartparens-config)
+  (smartparens-global-mode t)
+  (setq sp-base-key-bindings 'paredit)
+  (sp-use-paredit-bindings)
+  (show-smartparens-global-mode t))
 
 ;; Python mode ;;
 (when (try-require 'python-mode)
