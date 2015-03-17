@@ -65,6 +65,8 @@
 
 ;; Keybindings
 
+(global-set-key (kbd "M-_") 'hippie-expand)
+
 ; Map M-x to a more accessible key sequence
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
