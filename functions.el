@@ -65,4 +65,11 @@ directory to make multiple eshell windows easier."
     (insert (concat "ls"))
     (eshell-send-input)))
 
+(defun find-files (dir args)
+  "Run `find' and return its result as a list of strings.
+DIR specifies the directory to search, ARGS specifices arguments to `find'"
+  (let* ((command (concat "find " dir " " args " -print0"))
+         (files (split-string (shell-command-to-string command) (char-to-string 0))))
+    (remove-if-not '(lambda (x) (> (length x) 0)) files)))
+
 ;;; functions.el ends here
