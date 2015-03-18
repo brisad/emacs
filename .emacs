@@ -141,7 +141,8 @@
 (when (try-require 'yasnippet)
   ;(yas-global-mode 1)
   (yas-reload-all)
-  (add-hook 'python-mode-hook 'yas-minor-mode))
+  (add-hook 'python-mode-hook 'yas-minor-mode)
+  (add-hook 'c++-mode-hook 'yas-minor-mode))
 
 ;; Jedi ;;
 (if (try-require 'jedi)
