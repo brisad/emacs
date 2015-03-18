@@ -72,4 +72,16 @@ DIR specifies the directory to search, ARGS specifices arguments to `find'"
          (files (split-string (shell-command-to-string command) (char-to-string 0))))
     (remove-if-not '(lambda (x) (> (length x) 0)) files)))
 
+(defun dbm-to-watt (dbm)
+  "Show DBM in Watts."
+  (interactive "nValue in dBm: ")
+  (let ((watts (/ (expt 10 (/ dbm 10.0)) 1000)))
+    (message (format "%.2f" watts))))
+
+(defun watt-to-dbm (watt)
+  "Show WATT in dBm."
+  (interactive "nValue in W: ")
+  (let ((dbm (+ 30 (* 10 (log watt 10)))))
+    (message (format "%.2f" dbm))))
+
 ;;; functions.el ends here
