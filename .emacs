@@ -89,6 +89,11 @@
 (global-set-key (kbd "C-c i d") 'insert-date)
 (global-set-key (kbd "C-c i t") 'insert-time)
 
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR." t)
+
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+
 ;; Magit ;;
 (if (try-require 'magit)
     (global-set-key "\C-xg" 'magit-status))
