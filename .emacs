@@ -21,7 +21,8 @@
   (setq to-install
         '(python-mode magit yasnippet jedi auto-complete autopair
                       find-file-in-repository flycheck
-                      smartparens clojure-mode))
+                      smartparens clojure-mode
+                      expand-region))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -93,6 +94,10 @@
   "Kill up to, but not including ARGth occurrence of CHAR." t)
 
 (global-set-key (kbd "M-z") 'zap-up-to-char)
+
+;; expand-region ;;
+(if (try-require 'expand-region)
+    (global-set-key (kbd "C-'") 'er/expand-region))
 
 ;; Magit ;;
 (if (try-require 'magit)
