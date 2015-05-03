@@ -21,7 +21,7 @@
   (setq to-install
         '(python-mode magit yasnippet jedi auto-complete autopair
                       find-file-in-repository flycheck
-                      smartparens clojure-mode
+                      smartparens clojure-mode cider
                       expand-region))
 
   (if (cl-notevery 'package-installed-p to-install)
