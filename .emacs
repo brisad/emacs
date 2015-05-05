@@ -188,6 +188,9 @@
 (set-face-foreground 'default "black")
 (set-face-foreground 'region "gray60")
 
+; Don't disable narrow-to-region
+(put 'narrow-to-region 'disabled nil)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
