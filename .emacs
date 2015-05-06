@@ -22,7 +22,7 @@
         '(python-mode magit yasnippet jedi auto-complete autopair
                       find-file-in-repository flycheck
                       smartparens clojure-mode cider
-                      expand-region))
+                      smex expand-region))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -68,7 +68,8 @@
 
 (global-set-key (kbd "M-_") 'hippie-expand)
 
-; Map M-x to a more accessible key sequence
+; Map M-x to a more accessible key sequence, overridden if smex is
+; available below
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
@@ -172,6 +173,16 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
 (ido-mode t)
+
+;; smex ;;
+(if (try-require 'smex)
+    (progn
+      (global-set-key (kbd "M-x") 'smex)
+      (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+      (global-set-key (kbd "C-x C-m") 'smex)
+      (global-set-key (kbd "C-c C-m") 'smex)
+      ; The old M-x.
+      (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)))
 
 ;; column-marker ;;
 (require 'column-marker)
