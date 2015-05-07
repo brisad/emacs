@@ -138,6 +138,10 @@
 (windmove-default-keybindings)
 
 
+;; Save Place
+(require 'saveplace)
+(setq-default save-place t)
+
 ;; autocomplete ;;
 (when (try-require 'auto-complete)
   (setq
