@@ -63,6 +63,7 @@
 (setq require-final-newline t)
 (add-hook 'find-file-hook 'auto-insert)
 (setq mouse-yank-at-point t)
+(setq apropos-do-all t)
 
 
 ;; Keybindings
