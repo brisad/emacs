@@ -64,6 +64,7 @@
 (add-hook 'find-file-hook 'auto-insert)
 (setq mouse-yank-at-point t)
 (setq apropos-do-all t)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 
 ;; Keybindings
