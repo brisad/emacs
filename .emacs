@@ -66,6 +66,14 @@
 (setq apropos-do-all t)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; Backup settings
+(setq version-control t  ; Put version numbers on backup files
+      backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
+      backup-by-copying t
+      kept-old-versions 2
+      kept-new-versions 9
+      delete-old-versions t)
+
 
 ;; Keybindings
 
