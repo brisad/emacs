@@ -22,7 +22,7 @@
         '(python-mode magit yasnippet jedi auto-complete autopair
                       find-file-in-repository flycheck
                       smartparens clojure-mode cider
-                      smex expand-region))
+                      smex expand-region projectile))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -120,6 +120,9 @@
 ;; calendar ;;
 (setq calendar-week-start-day 1)
 
+
+;; Projectile ;;
+(projectile-global-mode)
 
 ;; Smartparens mode ;;
 
