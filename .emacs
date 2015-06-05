@@ -22,7 +22,7 @@
         '(python-mode magit yasnippet jedi auto-complete autopair
                       find-file-in-repository flycheck
                       smartparens clojure-mode cider
-                      smex expand-region projectile))
+                      flx-ido smex expand-region projectile))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -193,6 +193,13 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
 (ido-mode t)
+
+;; flx-ido ;;
+(when (try-require 'flx-ido)
+  (flx-ido-mode 1)
+  ;; disable ido faces to see flx highlights.
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-faces nil))
 
 ;; smex ;;
 (if (try-require 'smex)
