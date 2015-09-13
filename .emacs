@@ -19,7 +19,7 @@
 
   ;; make more packages available with the package installer
   (setq to-install
-        '(python-mode magit yasnippet jedi auto-complete autopair
+        '(python-mode magit yasnippet jedi auto-complete
                       find-file-in-repository flycheck
                       smartparens clojure-mode cider
                       flx-ido smex expand-region projectile))
@@ -165,9 +165,6 @@
    ac-candidate-limit 20)
   (add-hook 'python-mode-hook 'auto-complete-mode)
   (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode))
-
-(if (try-require 'autopair)
-    (add-hook 'python-mode-hook 'autopair-mode))
 
 (when (try-require 'yasnippet)
   ;(yas-global-mode 1)
