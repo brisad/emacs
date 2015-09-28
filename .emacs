@@ -159,11 +159,10 @@
 
 ;; autocomplete ;;
 (when (try-require 'auto-complete)
+  (ac-config-default)
   (setq
    ac-use-menu-map t
-   ac-candidate-limit 20)
-  (add-hook 'python-mode-hook 'auto-complete-mode)
-  (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode))
+   ac-candidate-limit 20))
 
 (when (try-require 'yasnippet)
   ;(yas-global-mode 1)
