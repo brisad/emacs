@@ -162,7 +162,9 @@
   (ac-config-default)
   (setq
    ac-use-menu-map t
-   ac-candidate-limit 20))
+   ac-candidate-limit 20)
+  (define-key ac-mode-map (kbd "<C-tab>") 'auto-complete))
+
 
 (when (try-require 'yasnippet)
   ;(yas-global-mode 1)
