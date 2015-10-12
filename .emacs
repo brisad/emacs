@@ -178,7 +178,7 @@
               (lambda ()
                 (jedi:setup)
                 (local-set-key "\C-cd" 'jedi:show-doc)
-                (local-set-key (kbd "M-.") 'jedi:goto-definition))))
+                (setq jedi:use-shortcuts t))))
 
 ;; flycheck ;;
 (if (try-require 'flycheck)
