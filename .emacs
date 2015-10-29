@@ -22,7 +22,7 @@
         '(python-mode magit yasnippet jedi auto-complete
                       find-file-in-repository flycheck
                       smartparens clojure-mode cider
-                      flx-ido smex expand-region projectile))
+                      flx-ido smex expand-region projectile ag))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -122,6 +122,9 @@
 
 ;; Projectile ;;
 (projectile-global-mode)
+
+;; Ag ;;
+(setq ag-highlight-search t)
 
 ;; Smartparens mode ;;
 
