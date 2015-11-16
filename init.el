@@ -32,7 +32,7 @@
             (package-refresh-contents)
             (mapc 'install-if-needed to-install)))))
 
-(add-to-list 'load-path "~/emacs")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 ; or (setq load-path (cons "~/.emacs/" load-path))
 ; or (push "~/.emacs/" load-path)
 
