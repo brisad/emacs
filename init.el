@@ -65,6 +65,7 @@
 (setq apropos-do-all t)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq load-prefer-newer t)
+(setq-default frame-title-format "%b (%f)")
 
 ;; Backup settings
 (setq version-control t  ; Put version numbers on backup files
