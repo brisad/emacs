@@ -46,6 +46,11 @@
   (interactive)
   (insert (format-time-string "%X")))
 
+(defun comment-or-uncomment-line ()
+  "Comment or uncomment line point is on"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
 ;; From http://www.howardism.org/Technical/Emacs/eshell-fun.html
 (defun eshell-here ()
   "Opens up a new shell in the directory associated with the

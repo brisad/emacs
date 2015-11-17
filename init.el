@@ -109,6 +109,8 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(global-set-key (kbd "C-;") 'comment-or-uncomment-line)
+
 ;; expand-region ;;
 (if (try-require 'expand-region)
     (global-set-key (kbd "C-'") 'er/expand-region))
