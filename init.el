@@ -22,7 +22,8 @@
         '(python-mode magit yasnippet jedi auto-complete
                       find-file-in-repository flycheck
                       smartparens clojure-mode cider
-                      flx-ido smex expand-region projectile ag))
+                      ido-ubiquitous flx-ido smex
+                      expand-region projectile ag))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -196,6 +197,7 @@
 (setq ido-use-filename-at-point nil)
 (setq ido-create-new-buffer 'always)
 (ido-mode t)
+(ido-ubiquitous-mode 1)
 
 ;; flx-ido ;;
 (when (try-require 'flx-ido)
