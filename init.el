@@ -220,6 +220,10 @@
 (require 'column-marker)
 (add-hook 'python-mode-hook (lambda () (interactive) (column-marker-1 80)))
 
+;; Show minibuffer documentation when editing lisp
+(add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+(add-hook 'clojure-mode-hook 'eldoc-mode)
+
 ;; Colors ;;
 
 (set-face-background 'region "gray95")
