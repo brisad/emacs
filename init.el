@@ -19,11 +19,11 @@
 
   ;; make more packages available with the package installer
   (setq to-install
-        '(python-mode magit yasnippet jedi auto-complete
-                      find-file-in-repository flycheck
-                      smartparens clojure-mode cider
-                      ido-ubiquitous flx-ido smex
-                      expand-region projectile ag))
+        '(magit yasnippet jedi auto-complete
+                find-file-in-repository flycheck
+                smartparens clojure-mode cider
+                ido-ubiquitous flx-ido smex
+                expand-region projectile ag))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -137,12 +137,6 @@
   (setq sp-base-key-bindings 'paredit)
   (sp-use-paredit-bindings)
   (show-smartparens-global-mode t))
-
-;; Python mode ;;
-(when (try-require 'python-mode)
-  (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
-  (setq py-electric-colon-active t))
-;;I want Ctrl-BKSP to work and else: jumps to left
 
 ;; imenu ;;
 
