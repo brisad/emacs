@@ -21,7 +21,7 @@
   (setq to-install
         '(magit yasnippet jedi auto-complete
                 find-file-in-repository flycheck
-                smartparens clojure-mode cider
+                paredit clojure-mode cider
                 ido-ubiquitous flx-ido smex
                 expand-region projectile ag))
 
@@ -129,14 +129,6 @@
 
 ;; Ag ;;
 (setq ag-highlight-search t)
-
-;; Smartparens mode ;;
-
-(when (try-require 'smartparens-config)
-  (smartparens-global-mode t)
-  (setq sp-base-key-bindings 'paredit)
-  (sp-use-paredit-bindings)
-  (show-smartparens-global-mode t))
 
 ;; imenu ;;
 
