@@ -20,6 +20,7 @@
   ;; make more packages available with the package installer
   (setq to-install
         '(magit yasnippet jedi auto-complete
+                virtualenvwrapper
                 find-file-in-repository flycheck
                 paredit clojure-mode cider
                 ido-ubiquitous flx-ido smex
@@ -181,6 +182,12 @@
                 (jedi:setup)
                 (local-set-key "\C-cd" 'jedi:show-doc)
                 (setq jedi:use-shortcuts t))))
+
+;; virtualenvwrapper
+(require 'virtualenvwrapper)
+(venv-initialize-interactive-shells)
+(venv-initialize-eshell)
+(setq venv-location "~/.virtualenvs/")
 
 ;; flycheck ;;
 (if (try-require 'flycheck)
