@@ -24,6 +24,7 @@
                 find-file-in-repository flycheck
                 paredit clojure-mode cider
                 ido-ubiquitous flx-ido smex
+                ido-vertical-mode
                 expand-region projectile ag))
 
   (if (cl-notevery 'package-installed-p to-install)
@@ -198,6 +199,9 @@
 (setq ido-create-new-buffer 'always)
 (ido-mode t)
 (ido-ubiquitous-mode 1)
+(ido-vertical-mode 1)
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
+(setq ido-vertical-show-count t)
 
 ;; flx-ido ;;
 (when (try-require 'flx-ido)
