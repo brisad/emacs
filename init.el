@@ -19,7 +19,7 @@
 
   ;; make more packages available with the package installer
   (setq to-install
-        '(magit yasnippet jedi auto-complete
+        '(magit yasnippet company-jedi
                 virtualenvwrapper
                 find-file-in-repository flycheck
                 paredit clojure-mode cider
@@ -160,13 +160,12 @@
 (require 'saveplace)
 (setq-default save-place t)
 
-;; autocomplete ;;
-(when (try-require 'auto-complete)
-  (ac-config-default)
-  (setq
-   ac-use-menu-map t
-   ac-candidate-limit 20)
-  (define-key ac-mode-map (kbd "<C-tab>") 'auto-complete))
+
+(defun setup-jedi-company-mode ()
+  (company-mode)
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'setup-jedi-company-mode)
 
 
 (when (try-require 'yasnippet)
@@ -176,12 +175,11 @@
   (add-hook 'c++-mode-hook 'yas-minor-mode))
 
 ;; Jedi ;;
-(if (try-require 'jedi)
-    (add-hook 'python-mode-hook
-              (lambda ()
-                (jedi:setup)
-                (local-set-key "\C-cd" 'jedi:show-doc)
-                (setq jedi:use-shortcuts t))))
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq jedi:use-shortcuts t)
+            (jedi:setup)
+            (local-set-key "\C-cd" 'jedi:show-doc)))
 
 ;; virtualenvwrapper
 (require 'virtualenvwrapper)
