@@ -119,8 +119,9 @@
     (global-set-key (kbd "C-'") 'er/expand-region))
 
 ;; Magit ;;
-(if (try-require 'magit)
-    (global-set-key "\C-xg" 'magit-status))
+(when (try-require 'magit)
+  (global-set-key "\C-xg" 'magit-status)
+  (setq magit-completing-read-function 'magit-ido-completing-read))
 
 ;; calendar ;;
 (setq calendar-week-start-day 1)
