@@ -147,7 +147,12 @@
 
 ;; Start imenu if possible
 (defun try-to-add-imenu ()
-  (condition-case nil (imenu-add-to-menubar "Imenu") (error nil)))
+  (condition-case
+      nil
+      (progn
+        (imenu-add-to-menubar "Imenu")
+        (setq imenu-auto-rescan t))
+    (error nil)))
 (add-hook 'font-lock-mode-hook 'try-to-add-imenu)
 
 
