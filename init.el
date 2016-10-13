@@ -24,7 +24,7 @@
                 find-file-in-repository flycheck
                 paredit clojure-mode cider
                 ido-ubiquitous flx-ido smex
-                ido-vertical-mode
+                ido-vertical-mode imenu-anywhere
                 expand-region projectile ag))
 
   (if (cl-notevery 'package-installed-p to-install)
@@ -226,6 +226,9 @@
       (global-set-key (kbd "C-c C-m") 'smex)
       ; The old M-x.
       (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)))
+
+;; imenu-anywhere ;;
+(global-set-key (kbd "C-.") #'imenu-anywhere)
 
 ;; column-marker ;;
 (require 'column-marker)
