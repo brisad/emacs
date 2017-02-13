@@ -25,7 +25,9 @@
                 paredit clojure-mode cider
                 ido-ubiquitous flx-ido smex
                 ido-vertical-mode imenu-anywhere
-                expand-region projectile ag))
+                expand-region projectile ag
+                rust-mode cargo flycheck-rust racer
+                ))
 
   (if (cl-notevery 'package-installed-p to-install)
       (if (y-or-n-p "Some packages are missing. Download them?")
@@ -237,6 +239,18 @@
 ;; Show minibuffer documentation when editing lisp
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (add-hook 'clojure-mode-hook 'eldoc-mode)
+
+;; Rust
+(require 'rust-mode)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(define-key rust-mode-map (kbd "C-c d") #'racer-describe)
+(define-key rust-mode-map (kbd "C-c C-d") #'racer-describe)
+(setq company-tooltip-align-annotations t)
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 ;; Colors ;;
 
