@@ -27,6 +27,7 @@
                 ido-vertical-mode imenu-anywhere
                 expand-region projectile ag
                 rust-mode cargo flycheck-rust racer
+                avy
                 ))
 
   (if (cl-notevery 'package-installed-p to-install)
@@ -115,6 +116,9 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-set-key (kbd "C-;") 'comment-or-uncomment-line)
+
+;; avy
+(global-set-key (kbd "M-p") 'avy-goto-char)
 
 ;; expand-region ;;
 (if (try-require 'expand-region)
