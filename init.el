@@ -258,7 +258,7 @@
 
 ;; Colors ;;
 
-(set-face-background 'region "gray95")
+(set-face-background 'region "burlywood")
 (set-face-foreground 'default "black")
 (set-face-foreground 'region "gray60")
 
