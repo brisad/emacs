@@ -27,7 +27,7 @@
                 ido-vertical-mode imenu-anywhere
                 expand-region projectile ag
                 rust-mode cargo flycheck-rust racer
-                avy
+                avy flycheck-flow
                 ))
 
   (if (cl-notevery 'package-installed-p to-install)
@@ -243,6 +243,46 @@
 ;; Show minibuffer documentation when editing lisp
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
 (add-hook 'clojure-mode-hook 'eldoc-mode)
+
+;; JS
+(defun checkers-for-mode (mode)
+  "Return list of flycheck checkers configured for MODE."
+  (remove-if
+   (lambda (checker)
+     (not (flycheck-checker-supports-major-mode-p checker mode)))
+   flycheck-checkers))
+
+(defun javascript-checkers ()
+  "Return list of configured javascript flycheck checkers."
+  (delete-dups
+   (apply
+    #'append
+    (mapcar #'checkers-for-mode
+            '(js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode web-mode)))))
+
+(defun use-checkers-from-node-modules ()
+  (let* ((root (locate-dominating-file (or (buffer-file-name)
+                                           default-directory)
+                                       "node_modules"))
+         (bindir (and root (expand-file-name "node_modules/.bin/" root))))
+    (dolist (checker (javascript-checkers))
+      (let* ((executable (flycheck-checker-executable checker))
+             (executable-variable (flycheck-checker-executable-variable checker)))
+        (when (not (symbol-value executable-variable))
+          (let ((new-executable (expand-file-name executable bindir)))
+            (when (file-executable-p new-executable)
+              (make-local-variable executable-variable)
+              (set executable-variable new-executable))))))))
+
+(add-hook 'flycheck-mode-hook #'use-checkers-from-node-modules)
+
+(require 'flycheck-flow)
+(with-eval-after-load 'flycheck
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'javascript-flow 'web-mode)
+  (flycheck-add-mode 'javascript-flow-coverage 'web-mode)
+  (flycheck-add-next-checker 'javascript-flow 'javascript-flow-coverage)
+  (flycheck-add-next-checker 'javascript-flow-coverage 'javascript-eslint))
 
 ;; Rust
 (require 'rust-mode)
