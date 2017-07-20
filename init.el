@@ -28,6 +28,7 @@
                 expand-region projectile ag
                 rust-mode cargo flycheck-rust racer
                 avy flycheck-flow iy-go-to-char
+                flow-minor-mode
                 ))
 
   (if (cl-notevery 'package-installed-p to-install)
@@ -246,6 +247,13 @@
 (add-hook 'clojure-mode-hook 'eldoc-mode)
 
 ;; JS
+(defconst js-modes
+  '(js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode web-mode))
+
+(dolist (mode js-modes)
+  (let ((hook (intern (concat (symbol-name mode) "-hook"))))
+    (add-hook hook 'flow-minor-enable-automatically)))
+
 (defun checkers-for-mode (mode)
   "Return list of flycheck checkers configured for MODE."
   (remove-if
@@ -258,8 +266,7 @@
   (delete-dups
    (apply
     #'append
-    (mapcar #'checkers-for-mode
-            '(js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode web-mode)))))
+    (mapcar #'checkers-for-mode js-modes))))
 
 (defun use-checkers-from-node-modules ()
   (let* ((root (locate-dominating-file (or (buffer-file-name)
