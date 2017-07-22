@@ -21,7 +21,7 @@
                 virtualenvwrapper
                 find-file-in-repository flycheck
                 paredit clojure-mode cider
-                ido-ubiquitous flx-ido smex
+                ido-completing-read+ flx-ido smex
                 ido-vertical-mode imenu-anywhere
                 expand-region projectile ag
                 rust-mode cargo flycheck-rust racer
@@ -207,10 +207,11 @@
 
 ;; ido-mode ;;
 (setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
 (setq ido-use-filename-at-point nil)
 (setq ido-create-new-buffer 'always)
-(ido-mode t)
+(ido-mode 1)
+(ido-everywhere)
+(require 'ido-completing-read+)
 (ido-ubiquitous-mode 1)
 (ido-vertical-mode 1)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
@@ -224,14 +225,13 @@
   (setq ido-use-faces nil))
 
 ;; smex ;;
-(if (try-require 'smex)
-    (progn
-      (global-set-key (kbd "M-x") 'smex)
-      (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-      (global-set-key (kbd "C-x C-m") 'smex)
-      (global-set-key (kbd "C-c C-m") 'smex)
-      ; The old M-x.
-      (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)))
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-x C-m") 'smex)
+(global-set-key (kbd "C-c C-m") 'smex)
+;; The old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; imenu-anywhere ;;
 (global-set-key (kbd "C-.") #'imenu-anywhere)
