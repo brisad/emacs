@@ -26,7 +26,7 @@
                 expand-region projectile ag
                 rust-mode cargo flycheck-rust racer
                 avy flycheck-flow iy-go-to-char
-                flow-minor-mode
+                flow-minor-mode company-flow
                 ))
 
   (if (cl-notevery 'package-installed-p to-install)
@@ -250,7 +250,14 @@
 
 (dolist (mode js-modes)
   (let ((hook (intern (concat (symbol-name mode) "-hook"))))
-    (add-hook hook 'flow-minor-enable-automatically)))
+    (add-hook hook
+              (lambda ()
+                (flow-minor-enable-automatically)
+                (company-mode)
+                (setq company-flow-executable (expand-file-name "flow" (node-modules-bindir)))))))
+
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-flow))
 
 (defun checkers-for-mode (mode)
   "Return list of flycheck checkers configured for MODE."
@@ -266,11 +273,17 @@
     #'append
     (mapcar #'checkers-for-mode js-modes))))
 
+(defun node-modules-bindir ()
+  "Return bin directory for node_modules in scope."
+  (let ((root (locate-dominating-file (or (buffer-file-name)
+                                          default-directory)
+                                      "node_modules")))
+    (when root
+      (expand-file-name "node_modules/.bin/" root))))
+
 (defun use-checkers-from-node-modules ()
-  (let* ((root (locate-dominating-file (or (buffer-file-name)
-                                           default-directory)
-                                       "node_modules"))
-         (bindir (and root (expand-file-name "node_modules/.bin/" root))))
+  "Setup JS flycheck checkers to use binaries in node_modules."
+  (let ((bindir (node-modules-bindir)))
     (dolist (checker (javascript-checkers))
       (let* ((executable (flycheck-checker-executable checker))
              (executable-variable (flycheck-checker-executable-variable checker)))
