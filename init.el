@@ -27,6 +27,7 @@
                 rust-mode cargo flycheck-rust racer
                 avy flycheck-flow iy-go-to-char
                 flow-minor-mode company-flow
+                web-mode
                 ))
 
   (if (cl-notevery 'package-installed-p to-install)
@@ -294,6 +295,14 @@
               (set executable-variable new-executable))))))))
 
 (add-hook 'flycheck-mode-hook #'use-checkers-from-node-modules)
+
+(add-hook 'web-mode-hook
+          (lambda ()
+            (setq web-mode-code-indent-offset 2)
+            (setq web-mode-markup-indent-offset 2)
+            (setq web-mode-css-indent-offset 2)
+            (if (equal web-mode-content-type "javascript")
+                (web-mode-set-content-type "jsx"))))
 
 (require 'flycheck-flow)
 (with-eval-after-load 'flycheck
