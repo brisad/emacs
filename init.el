@@ -1,6 +1,6 @@
 ; -*- coding: utf-8 -*-
 ;
-; Michael Brennan <brennan.brisad@gmail.com>
+; Michael Hoffmann <brennan.brisad@gmail.com>
 ;
 
 (when (>= emacs-major-version 24)
