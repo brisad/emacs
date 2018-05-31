@@ -72,6 +72,7 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq load-prefer-newer t)
 (setq-default frame-title-format "%b (%f)")
+(setq initial-scratch-message nil)
 
 ;; Backup settings
 (setq version-control t  ; Put version numbers on backup files
