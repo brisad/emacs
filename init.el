@@ -341,7 +341,40 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+ '(ibuffer-saved-filter-groups
+   (quote
+    (("default"
+      ("dired"
+       (saved . "dired"))
+      ("perf"
+       (saved . "perf"))
+      ("ag"
+       (saved . "ag"))))))
+ '(ibuffer-saved-filters
+   (quote
+    (("emacs"
+      ((or
+        (name . "^\\*scratch\\*$")
+        (name . "^\\*Messages\\*$")
+        (name . "^\\*Help\\*$"))))
+     ("dired"
+      ((used-mode . dired-mode)))
+     ("perf"
+      ((filename . "perf.html")))
+     ("magit"
+      ((used-mode . magit-status-mode)))
+     ("ag"
+      ((used-mode . ag-mode)))
+     ("programming"
+      ((or
+        (mode . python-mode)
+        (mode . emacs-lisp-mode)
+        (mode . cperl-mode)
+        (mode . c-mode)
+        (mode . java-mode)
+        (mode . idl-mode)
+        (mode . lisp-mode)))))))
+ '(inhibit-startup-screen t)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
