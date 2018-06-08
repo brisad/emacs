@@ -3,40 +3,39 @@
 ; Michael Hoffmann <brennan.brisad@gmail.com>
 ;
 
-(when (>= emacs-major-version 24)
-  (require 'cl)
-  (require 'package)
-  (package-initialize)
+(require 'cl)
+(require 'package)
+(package-initialize)
 
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
 
-  (defun install-if-needed (package)
-    (unless (package-installed-p package)
-      (package-install package)))
+(defun install-if-needed (package)
+  (unless (package-installed-p package)
+    (package-install package)))
 
-  ;; make more packages available with the package installer
-  (setq to-install
-        '(magit yasnippet company-jedi
-                virtualenvwrapper
-                find-file-in-repository flycheck
-                paredit clojure-mode cider
-                ido-completing-read+ flx-ido smex
-                ido-vertical-mode imenu-anywhere
-                expand-region projectile ag
-                rust-mode cargo flycheck-rust racer
-                avy flycheck-flow iy-go-to-char
-                flow-minor-mode company-flow
-                web-mode
-                ))
+;; make more packages available with the package installer
+(setq to-install
+      '(magit yasnippet company-jedi
+              virtualenvwrapper
+              find-file-in-repository flycheck
+              paredit clojure-mode cider
+              ido-completing-read+ flx-ido smex
+              ido-vertical-mode imenu-anywhere
+              expand-region projectile ag
+              rust-mode cargo flycheck-rust racer
+              avy flycheck-flow iy-go-to-char
+              flow-minor-mode company-flow
+              web-mode
+              ))
 
-  (if (cl-notevery 'package-installed-p to-install)
-      (if (y-or-n-p "Some packages are missing. Download them?")
-          (progn
-            ;; Now that we've got a yes we can do network activity and
-            ;; refresh contents before performing the downloads.
-            (package-refresh-contents)
-            (mapc 'install-if-needed to-install)))))
+(if (cl-notevery 'package-installed-p to-install)
+    (if (y-or-n-p "Some packages are missing. Download them?")
+        (progn
+          ;; Now that we've got a yes we can do network activity and
+          ;; refresh contents before performing the downloads.
+          (package-refresh-contents)
+          (mapc 'install-if-needed to-install))))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 ; or (setq load-path (cons "~/.emacs/" load-path))
