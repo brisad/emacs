@@ -16,7 +16,7 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(magit yasnippet company-jedi
+      '(magit company-jedi
               virtualenvwrapper
               find-file-in-repository flycheck
               paredit clojure-mode cider
@@ -183,13 +183,6 @@
   (add-to-list 'company-backends 'company-jedi))
 
 (add-hook 'python-mode-hook 'setup-jedi-company-mode)
-
-
-(when (try-require 'yasnippet)
-  ;(yas-global-mode 1)
-  (yas-reload-all)
-  (add-hook 'python-mode-hook 'yas-minor-mode)
-  (add-hook 'c++-mode-hook 'yas-minor-mode))
 
 ;; Jedi ;;
 (add-hook 'python-mode-hook
