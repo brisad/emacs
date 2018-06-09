@@ -16,7 +16,7 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(magit company-jedi
+      '(use-package magit company-jedi
               virtualenvwrapper
               find-file-in-repository flycheck
               paredit clojure-mode cider
@@ -36,6 +36,8 @@
           ;; refresh contents before performing the downloads.
           (package-refresh-contents)
           (mapc 'install-if-needed to-install))))
+
+(eval-when-compile (require 'use-package))
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 ; or (setq load-path (cons "~/.emacs/" load-path))
@@ -123,13 +125,12 @@
 (global-set-key (kbd "M-p") 'avy-goto-char)
 (global-set-key (kbd "M-n") 'iy-go-to-char)
 
-;; expand-region ;;
-(if (try-require 'expand-region)
-    (global-set-key (kbd "C-'") 'er/expand-region))
+(use-package expand-region
+  :bind ("C-'" . er/expand-region))
 
-;; Magit ;;
-(when (try-require 'magit)
-  (global-set-key "\C-xg" 'magit-status)
+(use-package magit
+  :bind ("C-x g" . magit-status)
+  :config
   (setq magit-completing-read-function 'magit-ido-completing-read))
 
 ;; calendar ;;
@@ -197,9 +198,8 @@
 (venv-initialize-eshell)
 (setq venv-location "~/.virtualenvs/")
 
-;; flycheck ;;
-(if (try-require 'flycheck)
-    (global-flycheck-mode t))
+(use-package flycheck
+  :init (global-flycheck-mode))
 
 ;; ido-mode ;;
 (setq ido-enable-flex-matching t)
@@ -213,8 +213,8 @@
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 (setq ido-vertical-show-count t)
 
-;; flx-ido ;;
-(when (try-require 'flx-ido)
+(use-package flx-ido
+  :config
   (flx-ido-mode 1)
   ;; disable ido faces to see flx highlights.
   (setq ido-enable-flex-matching t)

@@ -10,12 +10,6 @@
 
 ;;; Code:
 
-(defun try-require (feature)
-  "Try to load FEATURE.  On error just return nil."
-  (condition-case err
-      (require feature)
-    (file-error nil)))
-
 (defun set-window-width (width)
   "Set width of selected window to WIDTH."
   (interactive "p")
