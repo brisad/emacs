@@ -49,8 +49,6 @@
 
 (load-library "iso-transl")
 
-(package-initialize)
-
 ;; Settings ;;
 
 (prefer-coding-system 'utf-8)
