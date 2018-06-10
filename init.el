@@ -123,6 +123,8 @@
 
 (use-package iedit)
 
+(use-package wgrep)
+
 (use-package expand-region
   :bind ("C-'" . er/expand-region))
 
