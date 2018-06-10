@@ -16,13 +16,13 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(use-package magit company-jedi iedit
+      '(use-package company-jedi
               virtualenvwrapper
-              find-file-in-repository flycheck
+              find-file-in-repository
               paredit clojure-mode cider
-              ido-completing-read+ flx-ido smex
+              ido-completing-read+ smex
               ido-vertical-mode imenu-anywhere
-              expand-region projectile ag
+              projectile ag
               rust-mode cargo flycheck-rust racer
               avy flycheck-flow iy-go-to-char
               flow-minor-mode company-flow
@@ -38,6 +38,7 @@
           (mapc 'install-if-needed to-install))))
 
 (eval-when-compile (require 'use-package))
+(setq use-package-always-ensure t)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 ; or (setq load-path (cons "~/.emacs/" load-path))
