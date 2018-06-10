@@ -16,7 +16,7 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(use-package magit company-jedi
+      '(use-package magit company-jedi iedit
               virtualenvwrapper
               find-file-in-repository flycheck
               paredit clojure-mode cider
@@ -119,11 +119,11 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(global-set-key (kbd "C-;") 'comment-or-uncomment-line)
-
 ;; avy and iy
 (global-set-key (kbd "M-p") 'avy-goto-char)
 (global-set-key (kbd "M-n") 'iy-go-to-char)
+
+(use-package iedit)
 
 (use-package expand-region
   :bind ("C-'" . er/expand-region))
