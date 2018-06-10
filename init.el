@@ -367,6 +367,7 @@
         (mode . idl-mode)
         (mode . lisp-mode)))))))
  '(inhibit-startup-screen t)
+ '(js-indent-level 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
