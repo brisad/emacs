@@ -17,7 +17,6 @@
 ;; make more packages available with the package installer
 (setq to-install
       '(use-package company-jedi
-              virtualenvwrapper
               find-file-in-repository
               paredit clojure-mode cider
               ido-completing-read+ smex
@@ -190,12 +189,6 @@
             (setq jedi:use-shortcuts t)
             (jedi:setup)
             (local-set-key "\C-cd" 'jedi:show-doc)))
-
-;; virtualenvwrapper
-(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells)
-(venv-initialize-eshell)
-(setq venv-location "~/.virtualenvs/")
 
 (use-package flycheck
   :init (global-flycheck-mode))
