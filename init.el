@@ -17,7 +17,6 @@
 ;; make more packages available with the package installer
 (setq to-install
       '(use-package company-jedi
-              find-file-in-repository
               paredit clojure-mode cider
               ido-completing-read+ smex
               ido-vertical-mode imenu-anywhere
@@ -93,7 +92,6 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
 (global-set-key [f5] 'compile)
-(global-set-key [f7] 'find-file-in-repository)
 (global-set-key [f9] 'eshell-here)
 (global-set-key [f11] 'eshell)
 
@@ -131,6 +129,9 @@
   :bind ("C-x g" . magit-status)
   :config
   (setq magit-completing-read-function 'magit-ido-completing-read))
+
+(use-package find-file-in-repository
+  :bind ([f7] . find-file-in-repository))
 
 ;; calendar ;;
 (setq calendar-week-start-day 1)
