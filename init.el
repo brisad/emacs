@@ -21,7 +21,7 @@
               paredit clojure-mode cider
               ido-completing-read+ smex
               ido-vertical-mode imenu-anywhere
-              projectile ag
+              ag
               rust-mode cargo flycheck-rust racer
               avy flycheck-flow iy-go-to-char
               flow-minor-mode company-flow
@@ -136,9 +136,9 @@
 ;; calendar ;;
 (setq calendar-week-start-day 1)
 
-
-;; Projectile ;;
-(projectile-global-mode)
+(use-package projectile
+  :config
+  (projectile-global-mode))
 
 ;; Ag ;;
 (setq ag-highlight-search t)
