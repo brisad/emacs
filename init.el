@@ -118,7 +118,8 @@
 (global-set-key (kbd "M-p") 'avy-goto-char)
 (global-set-key (kbd "M-n") 'iy-go-to-char)
 
-(use-package iedit)
+(use-package iedit
+  :bind ("C-;" . iedit-mode))
 
 (use-package wgrep)
 
