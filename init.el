@@ -21,7 +21,6 @@
               paredit clojure-mode cider
               ido-completing-read+ smex
               ido-vertical-mode imenu-anywhere
-              ag
               rust-mode cargo flycheck-rust racer
               avy flycheck-flow iy-go-to-char
               flow-minor-mode company-flow
@@ -140,8 +139,9 @@
   :config
   (projectile-global-mode))
 
-;; Ag ;;
-(setq ag-highlight-search t)
+(use-package ag
+  :config
+  (setq ag-highlight-search t))
 
 ;; Paredit ;;
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
