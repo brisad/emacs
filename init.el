@@ -116,7 +116,7 @@
 
 ;; Jumping to visible text
 (use-package avy
-  :bind ("M-p" . avy-goto-char))
+  :bind ("M-p" . avy-goto-word-1))
 
 (global-set-key (kbd "M-n") 'iy-go-to-char)
 
