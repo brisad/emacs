@@ -19,7 +19,7 @@
       '(use-package company-jedi
               paredit clojure-mode cider
               ido-completing-read+ smex
-              ido-vertical-mode imenu-anywhere
+              ido-vertical-mode
               rust-mode cargo flycheck-rust racer
               flycheck-flow
               flow-minor-mode company-flow
@@ -225,8 +225,9 @@
 ;; The old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
-;; imenu-anywhere ;;
-(global-set-key (kbd "C-.") #'imenu-anywhere)
+;; imenu tag navigation across buffers
+(use-package imenu-anywhere
+  :bind ("C-." . imenu-anywhere))
 
 ;; column-marker ;;
 (require 'column-marker)
