@@ -21,7 +21,7 @@
               ido-completing-read+ smex
               ido-vertical-mode imenu-anywhere
               rust-mode cargo flycheck-rust racer
-              flycheck-flow iy-go-to-char
+              flycheck-flow
               flow-minor-mode company-flow
               web-mode
               ))
@@ -117,8 +117,6 @@
 ;; Jumping to visible text
 (use-package avy
   :bind ("M-p" . avy-goto-word-1))
-
-(global-set-key (kbd "M-n") 'iy-go-to-char)
 
 (use-package iedit
   :bind ("C-;" . iedit-mode))
