@@ -18,7 +18,7 @@
 (setq to-install
       '(use-package company-jedi
               paredit clojure-mode cider
-              ido-completing-read+ smex
+              ido-completing-read+
               ido-vertical-mode
               rust-mode cargo flycheck-rust racer
               flycheck-flow
@@ -85,11 +85,6 @@
 ;; Keybindings
 
 (global-set-key (kbd "M-_") 'hippie-expand)
-
-; Map M-x to a more accessible key sequence, overridden if smex is
-; available below
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
 
 (global-set-key [f5] 'compile)
 (global-set-key [f9] 'eshell-here)
@@ -216,14 +211,16 @@
   (setq ido-enable-flex-matching t)
   (setq ido-use-faces nil))
 
-;; smex ;;
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-x C-m") 'smex)
-(global-set-key (kbd "C-c C-m") 'smex)
-;; The old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+;; M-x enhancement
+(use-package smex
+  :config
+  (smex-initialize)
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-x C-m" . smex)
+         ("C-c C-m" . smex)
+         ;; The old M-x.
+         ("C-c C-c M-x" . execute-extended-command)))
 
 ;; imenu tag navigation across buffers
 (use-package imenu-anywhere
