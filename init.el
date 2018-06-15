@@ -18,7 +18,6 @@
 (setq to-install
       '(use-package company-jedi
               paredit clojure-mode cider
-              ido-completing-read+
               ido-vertical-mode
               rust-mode cargo flycheck-rust racer
               flycheck-flow
@@ -201,9 +200,11 @@
   (ido-mode 1)
   (ido-everywhere))
 
-;; ido-mode ;;
-(require 'ido-completing-read+)
-(ido-ubiquitous-mode 1)
+(use-package ido-completing-read+
+  :after ido
+  :config
+  (ido-ubiquitous-mode 1))
+
 (ido-vertical-mode 1)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
 (setq ido-vertical-show-count t)
