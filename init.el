@@ -192,12 +192,16 @@
 (use-package flycheck
   :init (global-flycheck-mode))
 
+;; Interactively do things
+(use-package ido
+  :config
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-filename-at-point nil)
+  (setq ido-create-new-buffer 'always)
+  (ido-mode 1)
+  (ido-everywhere))
+
 ;; ido-mode ;;
-(setq ido-enable-flex-matching t)
-(setq ido-use-filename-at-point nil)
-(setq ido-create-new-buffer 'always)
-(ido-mode 1)
-(ido-everywhere)
 (require 'ido-completing-read+)
 (ido-ubiquitous-mode 1)
 (ido-vertical-mode 1)
