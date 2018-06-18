@@ -18,7 +18,6 @@
 (setq to-install
       '(use-package company-jedi
               paredit clojure-mode cider
-              ido-vertical-mode
               rust-mode cargo flycheck-rust racer
               flycheck-flow
               flow-minor-mode company-flow
@@ -205,9 +204,12 @@
   :config
   (ido-ubiquitous-mode 1))
 
-(ido-vertical-mode 1)
-(setq ido-vertical-define-keys 'C-n-and-C-p-only)
-(setq ido-vertical-show-count t)
+(use-package ido-vertical-mode
+  :after ido
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
+  (setq ido-vertical-show-count t))
 
 (use-package flx-ido
   :config
