@@ -17,7 +17,7 @@
 ;; make more packages available with the package installer
 (setq to-install
       '(use-package company-jedi
-              paredit clojure-mode cider
+              paredit clojure-mode
               rust-mode cargo flycheck-rust racer
               flycheck-flow
               flow-minor-mode company-flow
@@ -320,6 +320,9 @@
 (define-key rust-mode-map (kbd "C-c C-d") #'racer-describe)
 (setq company-tooltip-align-annotations t)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+
+;; Clojure
+(use-package cider)
 
 ;; Colors ;;
 
