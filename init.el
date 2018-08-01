@@ -40,7 +40,6 @@
 
 (load "functions")
 (load "japanese-conf")
-(load "org-conf")
 
 (load-library "iso-transl")
 
@@ -136,6 +135,18 @@
 (use-package ag
   :config
   (setq ag-highlight-search t))
+
+
+;; Org-mode
+(use-package org
+  :config
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (setq org-log-done 'time)
+  (setq org-agenda-files (list org-directory))
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture)
+   ("C-c l" . org-store-link)))
 
 ;; Paredit ;;
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
