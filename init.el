@@ -18,7 +18,6 @@
 (setq to-install
       '(use-package company-jedi
               paredit clojure-mode
-              rust-mode cargo flycheck-rust racer
               flycheck-flow
               flow-minor-mode company-flow
               ))
@@ -321,16 +320,24 @@
   (flycheck-add-next-checker 'javascript-flow-coverage 'javascript-eslint))
 
 ;; Rust
-(require 'rust-mode)
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(define-key rust-mode-map (kbd "C-c d") #'racer-describe)
-(define-key rust-mode-map (kbd "C-c C-d") #'racer-describe)
-(setq company-tooltip-align-annotations t)
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(use-package rust-mode)
+
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode))
+
+(use-package racer
+  :hook (rust-mode . racer-mode)
+  :bind (("TAB" . company-indent-or-complete-common)
+         ("C-c d" . racer-describe)
+         ("C-c C-d" . racer-describe)))
+
+(use-package company
+  :hook (racer-mode . company-mode)
+  :config
+  (setq company-tooltip-align-annotations t))
+
+(use-package flycheck-rust
+  :hook (flycheck-mode . flycheck-rust-setup))
 
 ;; Clojure
 (use-package cider)
