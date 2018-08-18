@@ -67,6 +67,7 @@
 (setq initial-scratch-message nil)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
+(global-prettify-symbols-mode 1)
 
 ;; Backup settings
 (setq version-control t  ; Put version numbers on backup files
