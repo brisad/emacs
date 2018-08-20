@@ -17,7 +17,7 @@
 ;; make more packages available with the package installer
 (setq to-install
       '(use-package company-jedi
-              paredit clojure-mode
+              paredit
               flycheck-flow
               flow-minor-mode company-flow
               ))
@@ -341,6 +341,7 @@
   :hook (flycheck-mode . flycheck-rust-setup))
 
 ;; Clojure
+(use-package clojure-mode)
 (use-package cider)
 
 ;; Colors ;;
