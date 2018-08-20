@@ -19,7 +19,7 @@
       '(use-package company-jedi
               paredit
               flycheck-flow
-              flow-minor-mode company-flow
+              company-flow
               ))
 
 (if (cl-notevery 'package-installed-p to-install)
@@ -252,6 +252,8 @@
 (add-hook 'clojure-mode-hook 'eldoc-mode)
 
 ;; JS
+(use-package flow-minor-mode)
+
 (defconst js-modes
   '(js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode web-mode))
 
