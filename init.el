@@ -18,7 +18,6 @@
 (setq to-install
       '(use-package company-jedi
               flycheck-flow
-              company-flow
               ))
 
 (if (cl-notevery 'package-installed-p to-install)
@@ -264,7 +263,9 @@
                 (company-mode)
                 (setq company-flow-executable (expand-file-name "flow" (node-modules-bindir)))))))
 
-(with-eval-after-load 'company
+(use-package company-flow
+  :after company
+  :config
   (add-to-list 'company-backends 'company-flow))
 
 (defun checkers-for-mode (mode)
