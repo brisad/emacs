@@ -16,9 +16,7 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(use-package company-jedi
-              flycheck-flow
-              ))
+      '(use-package company-jedi))
 
 (if (cl-notevery 'package-installed-p to-install)
     (if (y-or-n-p "Some packages are missing. Download them?")
@@ -196,7 +194,9 @@
             (local-set-key "\C-cd" 'jedi:show-doc)))
 
 (use-package flycheck
-  :init (global-flycheck-mode))
+  :init (global-flycheck-mode)
+  :config
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 ;; Interactively do things
 (use-package ido
@@ -314,9 +314,9 @@
                 (if (equal web-mode-content-type "javascript")
                     (web-mode-set-content-type "jsx")))))
 
-(require 'flycheck-flow)
-(with-eval-after-load 'flycheck
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
+(use-package flycheck-flow
+  :after flycheck
+  :config
   (flycheck-add-mode 'javascript-flow 'web-mode)
   (flycheck-add-mode 'javascript-flow-coverage 'web-mode)
   (flycheck-add-next-checker 'javascript-flow 'javascript-flow-coverage)
