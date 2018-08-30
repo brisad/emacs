@@ -15,8 +15,7 @@
     (package-install package)))
 
 ;; make more packages available with the package installer
-(setq to-install
-      '(use-package company-jedi))
+(setq to-install '(use-package))
 
 (if (cl-notevery 'package-installed-p to-install)
     (if (y-or-n-p "Some packages are missing. Download them?")
@@ -180,18 +179,17 @@
 (setq-default save-place t)
 
 
-(defun setup-jedi-company-mode ()
-  (company-mode)
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'setup-jedi-company-mode)
-
 ;; Jedi ;;
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq jedi:use-shortcuts t)
-            (jedi:setup)
-            (local-set-key "\C-cd" 'jedi:show-doc)))
+(use-package company-jedi
+  :init
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (setq jedi:use-shortcuts t)
+              (jedi:setup)
+              (local-set-key "\C-cd" 'jedi:show-doc)
+              (company-mode)
+              (add-to-list 'company-backends 'company-jedi))))
+
 
 (use-package flycheck
   :init (global-flycheck-mode)
