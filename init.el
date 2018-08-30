@@ -330,9 +330,11 @@
 
 (use-package racer
   :hook (rust-mode . racer-mode)
-  :bind (("TAB" . company-indent-or-complete-common)
-         ("C-c d" . racer-describe)
-         ("C-c C-d" . racer-describe)))
+  :bind
+  (:map rust-mode-map
+        ("TAB" . company-indent-or-complete-common)
+        ("C-c d" . racer-describe)
+        ("C-c C-d" . racer-describe)))
 
 (use-package company
   :hook (racer-mode . company-mode)
