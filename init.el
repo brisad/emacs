@@ -45,13 +45,16 @@
 (add-hook 'find-file-hook 'auto-insert)
 (setq mouse-yank-at-point t)
 (setq apropos-do-all t)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq load-prefer-newer t)
 (setq-default frame-title-format "%b (%f)")
 (setq initial-scratch-message nil)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
 (global-prettify-symbols-mode 1)
+
+;; Ediff
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
 
 ;; Backup settings
 (setq version-control t  ; Put version numbers on backup files
