@@ -10,20 +10,9 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/"))
 
-(defun install-if-needed (package)
-  (unless (package-installed-p package)
-    (package-install package)))
-
-;; make more packages available with the package installer
-(setq to-install '(use-package))
-
-(if (cl-notevery 'package-installed-p to-install)
-    (if (y-or-n-p "Some packages are missing. Download them?")
-        (progn
-          ;; Now that we've got a yes we can do network activity and
-          ;; refresh contents before performing the downloads.
-          (package-refresh-contents)
-          (mapc 'install-if-needed to-install))))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
