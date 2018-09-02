@@ -388,7 +388,10 @@
         (mode . idl-mode)
         (mode . lisp-mode)))))))
  '(inhibit-startup-screen t)
- '(js-indent-level 2))
+ '(js-indent-level 2)
+ '(package-selected-packages
+   (quote
+    (racer cargo rust-mode company-flow flx-ido company-jedi magit expand-region wgrep web-mode use-package swiper smex projectile paredit js2-mode iy-go-to-char imenu-anywhere iedit ido-vertical-mode ido-completing-read+ highlight-thing flycheck-rust flycheck-flow flow-minor-mode find-file-in-repository cider avy ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
