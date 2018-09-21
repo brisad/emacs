@@ -56,6 +56,17 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
+(use-package ivy
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  :bind
+  (("C-s" . swiper)
+   ("C-c s" . isearch-forward-regexp)
+   ("M-x" . counsel-M-x)
+   ("C-x C-m" . counsel-M-x)))
+
 ;; Backup settings
 (setq version-control t  ; Put version numbers on backup files
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
@@ -222,9 +233,7 @@
 (use-package smex
   :config
   (smex-initialize)
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)
-         ("C-x C-m" . smex)
+  :bind (("M-X" . smex-major-mode-commands)
          ("C-c C-m" . smex)
          ;; The old M-x.
          ("C-c C-c M-x" . execute-extended-command)))
