@@ -64,8 +64,13 @@
   :bind
   (("C-s" . swiper)
    ("C-c s" . isearch-forward-regexp)
+   ("C-c C-r" . ivy-resume)
    ("M-x" . counsel-M-x)
-   ("C-x C-m" . counsel-M-x)))
+   ("C-x C-m" . counsel-M-x)
+   ("C-x C-f" . counsel-find-file)
+   ("<f1> f" . counsel-describe-function)
+   ("<f1> v" . counsel-describe-variable)
+   ("<f2> u" . counsel-unicode-char)))
 
 ;; Backup settings
 (setq version-control t  ; Put version numbers on backup files
