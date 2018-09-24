@@ -56,7 +56,10 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
+(use-package counsel)
+
 (use-package ivy
+  :after (counsel)
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
