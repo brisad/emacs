@@ -111,6 +111,8 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(global-set-key (kbd "<f8>") #'mh/toggle-check-writing)
+
 ;; Jumping to visible text
 (use-package avy
   :bind ("M-p" . avy-goto-word-1))
@@ -365,6 +367,20 @@
 
 ; Don't disable narrow-to-region
 (put 'narrow-to-region 'disabled nil)
+
+(defun mh/toggle-check-writing ()
+  "Toggle spelling and whitespace modes."
+  (interactive)
+  (if (and (bound-and-true-p flyspell-mode)
+           (bound-and-true-p whitespace-mode))
+      (progn
+        (flyspell-mode -1)
+        (whitespace-mode -1))
+    (if (derived-mode-p 'prog-mode)
+        (flyspell-prog-mode)
+      (flyspell-mode 1))
+    (flyspell-buffer)
+    (whitespace-mode 1)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
