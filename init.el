@@ -48,8 +48,9 @@
 (setq load-prefer-newer t)
 (setq-default frame-title-format "%b (%f)")
 (setq initial-scratch-message nil)
-(show-paren-mode t)
 (setq show-paren-style 'expression)
+(setq show-paren-delay 0)
+(show-paren-mode t)
 (global-prettify-symbols-mode 1)
 
 ;; Ediff
