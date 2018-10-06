@@ -116,7 +116,10 @@
 
 ;; Jumping to visible text
 (use-package avy
-  :bind ("M-p" . avy-goto-word-1))
+  :bind (("M-p" . avy-goto-word-1)
+         (:map isearch-mode-map ("C-'" . avy-isearch)))
+  :config
+  (setq avy-background t))
 
 (use-package iedit
   :bind ("C-;" . iedit-mode))
