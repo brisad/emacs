@@ -124,6 +124,13 @@
 (use-package iedit
   :bind ("C-;" . iedit-mode))
 
+(use-package multiple-cursors
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-M->" . mc/mark-next-symbol-like-this)
+         ("C-M-<" . mc/mark-previous-symbol-like-this)
+         ("C-S-SPC" . set-rectangular-region-anchor)))
+
 (use-package wgrep)
 
 (use-package expand-region
