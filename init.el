@@ -114,6 +114,10 @@
 
 (global-set-key (kbd "<f8>") #'mh/toggle-check-writing)
 
+(use-package hideshow
+  :hook (prog-mode . hs-minor-mode)
+  :bind ("<f6>" . hs-toggle-hiding))
+
 ;; Jumping to visible text
 (use-package avy
   :bind (("M-p" . avy-goto-word-1)
