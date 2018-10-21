@@ -74,6 +74,7 @@
    ("C-x C-f" . counsel-find-file)
    ("<f1> f" . counsel-describe-function)
    ("<f1> v" . counsel-describe-variable)
+   ("<f1> x" . counsel-find-library)
    ("<f2> u" . counsel-unicode-char)))
 
 ;; Backup settings
