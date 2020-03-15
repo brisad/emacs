@@ -23,6 +23,7 @@
 
 (load "functions")
 (load "japanese-conf")
+(load "radix/radix")
 
 (load-library "iso-transl")
 
