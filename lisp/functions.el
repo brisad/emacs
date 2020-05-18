@@ -31,9 +31,9 @@
   (print (call-interactively command) (current-buffer)))
 
 (defun insert-date ()
-  "Insert the locale's \"preferred\" date format."
+  "Insert current date."
   (interactive)
-  (insert (format-time-string "%x")))
+  (insert (format-time-string "%Y-%m-%d")))
 
 (defun insert-time ()
   "Insert the locale's \"preferred\" time format."
