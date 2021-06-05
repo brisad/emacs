@@ -59,6 +59,7 @@
 (setq show-paren-delay 0)
 (show-paren-mode t)
 (global-prettify-symbols-mode 1)
+(save-place-mode t)
 
 ;; Ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -210,12 +211,6 @@
 (when (fboundp 'winner-mode)
       (winner-mode 1))
 (windmove-default-keybindings)
-
-
-;; Save Place
-(require 'saveplace)
-(setq-default save-place t)
-
 
 ;; Jedi ;;
 (use-package company-jedi
