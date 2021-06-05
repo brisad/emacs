@@ -21,6 +21,12 @@
 ; or (setq load-path (cons "~/.emacs/" load-path))
 ; or (push "~/.emacs/" load-path)
 
+(defun visit-init-dot-el ()
+  "Visit init.el file."
+  (interactive)
+  (find-file (expand-file-name "init.el" user-emacs-directory)))
+(global-set-key (kbd "C-c d") 'visit-init-dot-el)
+
 (load "functions")
 (load "japanese-conf")
 (load "radix/radix")
