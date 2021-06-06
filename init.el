@@ -3,7 +3,6 @@
 ; Michael Hoffmann <brennan.brisad@gmail.com>
 ;
 
-(require 'cl)
 (require 'package)
 (package-initialize)
 
