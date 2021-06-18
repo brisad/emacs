@@ -44,6 +44,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (setq transient-mark-mode nil)
+(setq set-mark-command-repeat-pop t)
 (setq visible-bell t)
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
