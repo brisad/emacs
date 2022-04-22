@@ -7,7 +7,7 @@
 (package-initialize)
 
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
+             '("melpa" . "https://melpa.org/packages/"))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
