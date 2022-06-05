@@ -299,7 +299,7 @@
 
 (defun checkers-for-mode (mode)
   "Return list of flycheck checkers configured for MODE."
-  (remove-if
+  (seq-remove
    (lambda (checker)
      (not (flycheck-checker-supports-major-mode-p checker mode)))
    flycheck-checkers))
