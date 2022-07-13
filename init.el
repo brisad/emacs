@@ -60,6 +60,7 @@
 (show-paren-mode t)
 (global-prettify-symbols-mode 1)
 (save-place-mode t)
+(setq dired-dwim-target t)
 
 ;; Ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
