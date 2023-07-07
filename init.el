@@ -190,6 +190,11 @@
    ("C-c c" . org-capture)
    ("C-c l" . org-store-link)))
 
+(setq org-babel-python-command "python3")
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((shell . t) (python . t)))
+(setq org-confirm-babel-evaluate nil)
+
 ;; Paredit ;;
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
