@@ -126,6 +126,11 @@
 
 (global-set-key (kbd "<f8>") #'mh/toggle-check-writing)
 
+(global-set-key (kbd "M-[") 'previous-buffer)
+(global-set-key (kbd "M-]") 'next-buffer)
+(global-set-key (kbd "s-B") 'ibuffer)
+(global-set-key (kbd "s-b") 'ido-switch-buffer)
+
 (use-package hideshow
   :hook (prog-mode . hs-minor-mode)
   :bind ("<f6>" . hs-toggle-hiding))
