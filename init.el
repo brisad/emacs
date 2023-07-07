@@ -96,6 +96,8 @@
 
 
 ;; Keybindings
+(global-unset-key (kbd "C-x C-z"))
+(global-unset-key (kbd "C-z"))
 
 (global-set-key (kbd "M-_") 'hippie-expand)
 
