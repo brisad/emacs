@@ -198,8 +198,6 @@
 ;; Paredit ;;
 (use-package paredit
   :hook ((emacs-lisp-mode . enable-paredit-mode)
-         (eval-expression-minibuffer-setup . enable-paredit-mode)
-         (ielm-mode . enable-paredit-mode)
          (lisp-mode . enable-paredit-mode)
          (lisp-interaction-mode . enable-paredit-mode)
          (scheme-mode . enable-paredit-mode)
