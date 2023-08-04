@@ -174,11 +174,6 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-(use-package ag
-  :config
-  (setq ag-highlight-search t))
-
-
 ;; Org-mode
 (use-package org
   :config
@@ -452,8 +447,7 @@
  '(inhibit-startup-screen t)
  '(js-indent-level 2)
  '(package-selected-packages
-   (quote
-    (racer cargo rust-mode company-flow flx-ido company-jedi magit expand-region wgrep web-mode use-package swiper smex projectile paredit js2-mode iy-go-to-char imenu-anywhere iedit ido-vertical-mode ido-completing-read+ highlight-thing flycheck-rust flycheck-flow flow-minor-mode find-file-in-repository cider avy ag))))
+   '(racer cargo rust-mode company-flow flx-ido company-jedi magit expand-region wgrep web-mode use-package swiper smex projectile paredit js2-mode iy-go-to-char imenu-anywhere iedit ido-vertical-mode ido-completing-read+ highlight-thing flycheck-rust flycheck-flow flow-minor-mode find-file-in-repository cider avy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
