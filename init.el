@@ -66,26 +66,6 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
-(use-package counsel)
-
-(use-package ivy
-  :after (counsel)
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  :bind
-  (("C-s" . swiper)
-   ("C-c s" . isearch-forward-regexp)
-   ("C-c C-r" . ivy-resume)
-   ("M-x" . counsel-M-x)
-   ("C-x C-m" . counsel-M-x)
-   ("C-x C-f" . counsel-find-file)
-   ("<f1> f" . counsel-describe-function)
-   ("<f1> v" . counsel-describe-variable)
-   ("<f1> x" . counsel-find-library)
-   ("<f2> u" . counsel-unicode-char)))
-
 ;; Backup settings
 (setq version-control t  ; Put version numbers on backup files
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
@@ -98,6 +78,9 @@
 ;; Keybindings
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "C-z"))
+
+(global-set-key (kbd "C-x C-m") 'execute-extended-command)
+(global-set-key (kbd "C-c C-m") 'execute-extended-command)
 
 (global-set-key (kbd "M-_") 'hippie-expand)
 
@@ -129,7 +112,7 @@
 (global-set-key (kbd "M-[") 'previous-buffer)
 (global-set-key (kbd "M-]") 'next-buffer)
 (global-set-key (kbd "s-B") 'ibuffer)
-(global-set-key (kbd "s-b") 'ido-switch-buffer)
+(global-set-key (kbd "s-b") 'switch-to-buffer)
 
 (use-package hideshow
   :hook (prog-mode . hs-minor-mode)
@@ -158,9 +141,7 @@
   :bind ("C-'" . er/expand-region))
 
 (use-package magit
-  :bind ("C-x g" . magit-status)
-  :config
-  (setq magit-completing-read-function 'magit-ido-completing-read))
+  :bind ("C-x g" . magit-status))
 
 (use-package find-file-in-repository
   :bind ([f7] . find-file-in-repository))
@@ -235,42 +216,15 @@
   :config
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
-;; Interactively do things
-(use-package ido
-  :config
-  (setq ido-enable-flex-matching t)
-  (setq ido-use-filename-at-point nil)
-  (setq ido-create-new-buffer 'always)
-  (ido-mode 1)
-  (ido-everywhere))
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode))
 
-(use-package ido-completing-read+
-  :after ido
-  :config
-  (ido-ubiquitous-mode 1))
-
-(use-package ido-vertical-mode
-  :after ido
-  :config
-  (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
-  (setq ido-vertical-show-count t))
-
-(use-package flx-ido
-  :config
-  (flx-ido-mode 1)
-  ;; disable ido faces to see flx highlights.
-  (setq ido-enable-flex-matching t)
-  (setq ido-use-faces nil))
-
-;; M-x enhancement
-(use-package smex
-  :config
-  (smex-initialize)
-  :bind (("M-X" . smex-major-mode-commands)
-         ("C-c C-m" . smex)
-         ;; The old M-x.
-         ("C-c C-c M-x" . execute-extended-command)))
+;; Remember recently used selections in find-file, M-x, etc.
+(use-package savehist
+  :init
+  (savehist-mode))
 
 ;; imenu tag navigation across buffers
 (use-package imenu-anywhere
