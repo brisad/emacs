@@ -137,7 +137,7 @@
 
 ;; Jumping to visible text
 (use-package avy
-  :bind (("M-p" . avy-goto-subword-1)
+  :bind (("M-j" . avy-goto-char-timer)
          (:map isearch-mode-map ("C-'" . avy-isearch)))
   :config
   (setq avy-background t))
